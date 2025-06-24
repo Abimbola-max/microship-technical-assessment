@@ -1,0 +1,9 @@
+[project]
+name = "simplequoteapi"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "flask>=3.1.1",
+    "marshmallow>=4.0.0",
+]
