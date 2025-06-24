@@ -1,6 +1,6 @@
 class Quote:
 
-    def __init__(self, description: str, date_quoted=None):
+    def __init__(self, description: str, date_quoted: str):
         self.description = description
         self.date_quoted = date_quoted
 

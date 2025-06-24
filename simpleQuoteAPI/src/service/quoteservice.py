@@ -6,10 +6,11 @@ class QuoteService:
     def __init__(self):
         self.list_of_quotes = []
 
-    def add_quote(self, description: str)-> Quote:
+    def add_quote(self, description: str, date_quoted: str)-> Quote:
         if not description.strip():
             raise ValueError("The field must not be empty")
         new_quote = Quote(description=description,
+                          date_quoted=date_quoted
         )
         self.list_of_quotes.append(new_quote)
         return new_quote

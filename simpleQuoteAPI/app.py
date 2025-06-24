@@ -18,4 +18,4 @@ def add_quote():
     return quote_controller.add_quote()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5010)
