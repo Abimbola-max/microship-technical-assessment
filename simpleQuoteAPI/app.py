@@ -2,7 +2,6 @@ from flask import Flask
 
 from src.controller.quotecontroller import QuoteController
 from src.service.quoteservice import QuoteService
-
 app = Flask(__name__)
 
 
