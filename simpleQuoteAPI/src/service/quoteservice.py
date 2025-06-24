@@ -13,3 +13,6 @@ class QuoteService:
         )
         self.list_of_quotes.append(new_quote)
         return new_quote
+
+    def get_all_quotes(self)-> list[Quote]:
+        return self.list_of_quotes
