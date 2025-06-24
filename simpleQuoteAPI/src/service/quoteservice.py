@@ -1,3 +1,4 @@
+
 from src.models.quote import Quote
 
 

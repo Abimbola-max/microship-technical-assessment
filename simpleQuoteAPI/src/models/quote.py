@@ -20,4 +20,3 @@ class Quote:
     @date_quoted.setter
     def date_quoted(self, value):
         self.__date_quoted = value
-

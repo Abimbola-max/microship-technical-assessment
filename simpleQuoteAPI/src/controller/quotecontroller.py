@@ -1,4 +1,3 @@
-
 from flask import jsonify, request
 from marshmallow import ValidationError
 from datetime import datetime
@@ -23,9 +22,12 @@ class QuoteController:
 
             self.quoteservice.add_quote(description, date_quoted)
 
+            date_obj = datetime.fromisoformat(date_quoted)
+            formatted_date = date_obj.strftime("%Y-%m-%d %H:%M")
+
             return jsonify({
                 "message": "Quote added successfully",
-                "date_quoted": date_quoted
+                "date_quoted": formatted_date
             }), 201
 
         except ValidationError as e:
@@ -41,5 +43,3 @@ class QuoteController:
             for quote in quotes
         ]
         return jsonify({"quotes": quote_list}), 200
-
-
