@@ -26,7 +26,7 @@ class QuoteController:
             formatted_date = date_obj.strftime("%Y-%m-%d %H:%M")
 
             return jsonify({
-                "message": "Quote added successfully",
+                "message": "You have successfully added a Quote",
                 "date_quoted": formatted_date
             }), 201
 
