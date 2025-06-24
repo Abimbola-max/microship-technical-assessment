@@ -1,5 +1,4 @@
-from src.dto.request.quoterequest import QuoteRequest
-from src.dto.response.quoteresponse import QuoteResponse
+from src.models.quote import Quote
 
 
 class QuoteService:
@@ -8,4 +7,9 @@ class QuoteService:
         self.list_of_quotes = []
 
     def add_quote(self, description: str)-> Quote:
-        self.list_of_quotes.append(description)
+        if not description.strip():
+            raise ValueError("The field must not be empty")
+        new_quote = Quote(description=description,
+        )
+        self.list_of_quotes.append(new_quote)
+        return new_quote
