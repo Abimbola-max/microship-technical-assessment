@@ -2,6 +2,7 @@ from pymongo import MongoClient
 
 from src.data.model.user import User
 from src.data.repository.userinterface import UserInterface
+from src.exceptions.exception import NotFoundException
 
 
 class UserRepository(UserInterface):
@@ -23,3 +24,15 @@ class UserRepository(UserInterface):
 
     def exists_by_email(self,  email: str) -> bool:
         return self.collection.find_one({"email": email}) is not None
+
+    def find_by_email(self, email: str) -> User:
+        data = self.collection.find_one({'email': email})
+        if not data:
+            raise NotFoundException("User not Found.")
+        return User(**data)
+
+    def find_by_name_or_email(self, name: str, email) -> User:
+        data = self.collection.find_one({"name": name, "email": email})
+        if not data:
+            raise NotFoundException("User not Found.")
+        return User(**data)

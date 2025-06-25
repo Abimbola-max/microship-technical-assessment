@@ -13,3 +13,11 @@ class UserInterface(ABC):
     def exists_by_email(self,  email: str) -> bool:
         pass
 
+    @abstractmethod
+    def find_by_email(self, email: str) -> User:
+        pass
+
+    @abstractmethod
+    def find_by_name_or_email(self, name: str, email) -> User:
+        pass
+
