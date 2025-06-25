@@ -1,9 +1,9 @@
 class User:
-
-    def __init__(self, name, email, password):
+    def __init__(self, name, email, password, _id=None):
         self.name = name
         self.email = email
         self.password = password
+        self._id = _id
 
     @property
     def name(self):

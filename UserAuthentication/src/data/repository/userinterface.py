@@ -21,3 +21,7 @@ class UserInterface(ABC):
     def find_by_name_or_email(self, name: str, email) -> User:
         pass
 
+    @abstractmethod
+    def find_by_name(self, name: str):
+        pass
+

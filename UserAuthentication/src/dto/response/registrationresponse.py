@@ -1,6 +1,4 @@
-from dataclasses import fields
-
-from marshmallow import Schema, validate
+from marshmallow import Schema, fields
 
 
 class UserRegResponse(Schema):
