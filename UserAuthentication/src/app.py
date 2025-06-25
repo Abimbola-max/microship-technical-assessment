@@ -3,13 +3,14 @@ from datetime import timedelta
 
 from dotenv import load_dotenv
 from flasgger import Swagger
-from flask import Flask
+from flask import Flask, jsonify
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 from src.controller.usercontroller import UserController
 from src.data.repository.userrespository import UserRepository
+from src.exceptions.exception import NotFoundException
 from src.service.userservices.userservice import UserService
 
 app = Flask(__name__)
@@ -45,6 +46,20 @@ def login():
 @jwt_required()
 def profile():
     current_user_email = get_jwt_identity()
+    try:
+        user = user_repo.find_by_email(current_user_email)
+        return jsonify({
+            'name': user.name,
+            'email': user.email
+        }), 200
+    except NotFoundException as e:
+        return jsonify({'error': str(e)}), 404
+
+
+# @app.route('/profile', methods=['GET'])
+# @jwt_required()
+# def profile():
+#     current_user_email = get_jwt_identity()
 
 
 
