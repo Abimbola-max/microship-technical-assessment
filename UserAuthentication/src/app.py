@@ -10,6 +10,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from src.controller.usercontroller import UserController
 from src.data.repository.userrespository import UserRepository
+from src.dto.response.profileresponse import ProfileResponse
 from src.exceptions.exception import NotFoundException
 from src.service.userservices.userservice import UserService
 
@@ -23,6 +24,7 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 app.config['JWT_TOKEN_LOCATION'] = ['headers']
 app.config['JWT_HEADER_NAME'] = 'Authorization'
 app.config['JWT_HEADER_TYPE'] = 'Bearer'
+profile_response = ProfileResponse()
 
 jwt = JWTManager(app)
 
@@ -48,18 +50,9 @@ def profile():
     current_user_email = get_jwt_identity()
     try:
         user = user_repo.find_by_email(current_user_email)
-        return jsonify({
-            'name': user.name,
-            'email': user.email
-        }), 200
+        return jsonify(profile_response.dump(user)), 200
     except NotFoundException as e:
         return jsonify({'error': str(e)}), 404
-
-
-# @app.route('/profile', methods=['GET'])
-# @jwt_required()
-# def profile():
-#     current_user_email = get_jwt_identity()
 
 
 

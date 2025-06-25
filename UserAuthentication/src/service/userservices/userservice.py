@@ -53,6 +53,6 @@ class UserService:
         )
 
         return {
-            "message": f"Hi '{user.name}' has successfully logged in.",
+            "message": f"Hello '{user.name}' you have successfully logged in.",
             "access_token": access_token
         }
