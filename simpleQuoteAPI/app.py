@@ -1,9 +1,10 @@
 from flask import Flask
+from flasgger import Swagger
 
 from src.controller.quotecontroller import QuoteController
 from src.service.quoteservice import QuoteService
 app = Flask(__name__)
-
+swagger = Swagger(app)
 
 quote_service = QuoteService()
 quote_controller = QuoteController(quote_service)
@@ -17,4 +18,4 @@ def add_quote():
     return quote_controller.add_quote()
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5010)
+    app.run(debug=True)
